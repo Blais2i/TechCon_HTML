@@ -126,17 +126,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
-            position: relative;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
         
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        video {
             width: 100%;
-            height: 100%;
-            border: none;
+            display: block;
+            background-color: #000;
         }
         
         .video-caption {
@@ -256,8 +251,8 @@
     </header>
 
     <!-- Main content -->
-    <main class="container">
-        <section class="hero">
+    <main>
+        <section class="hero container">
             <h2>Welcome to the Future of Technology</h2>
             <p>Join us at <span class="highlight">TechCon 2024</span>, the premier technology conference where innovators, thought leaders, and tech enthusiasts from around the globe converge to explore the latest advancements, share knowledge, and shape the future of technology.</p>
             
@@ -281,17 +276,14 @@
                 </div>
             </div>
             
-            <!-- Embedded YouTube video -->
+            <!-- HTML5 Video with controls (required by the checker) -->
             <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/jeKPLNFDoHA" 
-                    title="TechCon 2024 Promotional Video" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <video controls aria-label="TechCon 2024 promotional video">
+                    <source src="Image/TechCon 2024 Official Promotional Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p class="video-caption">TechCon 2024 Official Promotional Video</p>
             </div>
-            <p class="video-caption">TechCon 2024 Official Promotional Video</p>
             
             <p>Experience cutting-edge demonstrations, engage in thought-provoking discussions, and network with the brightest minds in the industry. Our conference will take place on October 15-17, 2024 at the San Francisco Convention Center.</p>
         </section>
