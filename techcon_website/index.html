@@ -126,12 +126,17 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
         
-        video {
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: block;
-            background-color: #000;
+            height: 100%;
+            border: none;
         }
         
         .video-caption {
@@ -148,6 +153,34 @@
             text-align: center;
             padding: 1.5rem 0;
             margin-top: 2rem;
+        }
+        
+        /* Countdown timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
         
         /* Responsive design */
@@ -176,6 +209,10 @@
             
             .hero p {
                 font-size: 1rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
             }
         }
         
@@ -224,15 +261,39 @@
             <h2>Welcome to the Future of Technology</h2>
             <p>Join us at <span class="highlight">TechCon 2024</span>, the premier technology conference where innovators, thought leaders, and tech enthusiasts from around the globe converge to explore the latest advancements, share knowledge, and shape the future of technology.</p>
             
-            <div class="video-container">
-                <video controls aria-label="TechCon 2024 promotional video">
-                    <source src="techcon-promo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p class="video-caption">TechCon 2024 Official Promotional Video</p>
+            <!-- Countdown timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
             </div>
             
-            <p>Experience cutting-edge demonstrations, engage in thought-provoking discussions, and network with the brightest minds in the industry.</p>
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/jeKPLNFDoHA" 
+                    title="TechCon 2024 Promotional Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="video-caption">TechCon 2024 Official Promotional Video</p>
+            
+            <p>Experience cutting-edge demonstrations, engage in thought-provoking discussions, and network with the brightest minds in the industry. Our conference will take place on October 15-17, 2024 at the San Francisco Convention Center.</p>
         </section>
     </main>
 
@@ -242,5 +303,30 @@
             <p>&copy; 2024 TechCon Conference. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Countdown timer for TechCon 2024 (October 15, 2024)
+        function updateCountdown() {
+            const conferenceDate = new Date('October 15, 2024 09:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = conferenceDate - now;
+            
+            // Calculate days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the results
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+    </script>
 </body>
 </html>
